@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
-import constants as con
+import constants as con #TODO: move const file to config directory
 import logging
 import logging.config
 
@@ -14,13 +14,12 @@ logger = logging.getLogger(__file__)
 
 
 ##################################
-#  driver configuration          #
+#  Driver configuration          #
 ##################################
 driver = webdriver.Chrome(executable_path=con.CHROME_DRIVER)
 driver.get(con.URL)
 currentURL = driver.current_url
 print(f' current url: {currentURL}  \n')
-resultTxt = "vacio"
 
 ##################################
 #  CSS selectors                 #
@@ -61,9 +60,7 @@ if __name__ == '__main__':
             driver.find_element_by_css_selector(sendButtonSelector).click()
 
             # Get the result message
-            # Errors
-            #resultTxt = driver.find_element_by_css_selector(resultMessageSelector).text
-            #detailTxt = driver.find_element_by_css_selector(detailMessageSelector).text
+            # TODO: implement capture success message in order tu validate process is done
 
             # Get the last recent clockings
             currentClocking = driver.find_element_by_css_selector(recentClockings1).text
@@ -71,13 +68,11 @@ if __name__ == '__main__':
             clocking3 = driver.find_element_by_css_selector(recentClockings3).text
             clocking4 = driver.find_element_by_css_selector(recentClockings4).text
 
-        except:
+        except: #TODO: capture the specific error selenium selector related
             logger.error(" ** ERROR: Something is wrong!  :(   \n")
             raise
         else: 
             logger.info("... Process finished without script errors   :)")
-            logger.info(f"Status operation: {resultTxt}")
-            #logger.info(f"Detail: {detailTxt}")
             logger.info(f"Current clocking: {currentClocking}")
             logger.info(f"Previus clocking: {clocking2}")
             logger.info(f"Previus clocking: {clocking3}")
