@@ -150,5 +150,5 @@ dmypy.json
 ### Ignore local log files
 logs/
 
-## Prevent pull the constants.py file with private data
+## Prevent pull the constant file with private data
 src/constants.py
