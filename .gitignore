@@ -151,4 +151,4 @@ dmypy.json
 logs/
 
 ## Prevent pull the constant file with private data
-src/constants.py
+consts.py
