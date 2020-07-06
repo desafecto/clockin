@@ -1,8 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
-import constants as con #TODO: move const file to config directory
+import consts as con
 import logging
 import logging.config
+import time
 
 
 ##################################
@@ -41,7 +42,6 @@ recentClockings3 = '#recentClockings > tr:nth-child(3) > td:nth-child(1) > p'
 recentClockings4 = '#recentClockings > tr:nth-child(4) > td:nth-child(1) > p'
 
 
-
 if __name__ == '__main__':
 
 
@@ -62,6 +62,8 @@ if __name__ == '__main__':
             # Get the result message
             # TODO: implement capture success message in order tu validate process is done
 
+            time.sleep(2) # Sincronize the success page renderization TODO: this must be replaced by synchronization
+
             # Get the last recent clockings
             currentClocking = driver.find_element_by_css_selector(recentClockings1).text
             clocking2 = driver.find_element_by_css_selector(recentClockings2).text
@@ -78,5 +80,5 @@ if __name__ == '__main__':
             logger.info(f"Previus clocking: {clocking3}")
             logger.info(f"Previus clocking: {clocking4}")
         finally:
-            driver.close()
-            print('Fin')
+            # driver.close()
+            print('The end')
